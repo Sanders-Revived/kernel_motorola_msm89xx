@@ -405,32 +405,6 @@
 		qcom,config-info = "sanders";
 	};
 
-	qcom,sensor-information {
-		/delete-node/ sensor_information18;
-
-		sensor_information21: qcom,sensor-information-21 {
-			qcom,sensor-type = "adc";
-			qcom,sensor-name = "msm_therm";
-		};
-
-		sensor_information22: qcom,sensor-information-22 {
-			qcom,sensor-type = "adc";
-			qcom,sensor-name = "battery";
-			qcom,alias-name  = "batt_therm";
-			qcom,scaling-factor = <1000>;
-		};
-		sensor_information23: qcom,sensor-information-23 {
-			qcom,sensor-type = "adc";
-			qcom,sensor-name = "front_temp";
-			qcom,scaling-factor = <1000>;
-		};
-		sensor_information24: qcom,sensor-information-24 {
-			qcom,sensor-type = "adc";
-			qcom,sensor-name = "back_temp";
-			qcom,scaling-factor = <1000>;
-		};
-	};
-
 	sys_temp_support {
 		compatible = "mmi,sys-temp";
 		mmi,temperature-names = "front_temp",
