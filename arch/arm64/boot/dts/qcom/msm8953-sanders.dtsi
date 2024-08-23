@@ -480,8 +480,6 @@
 		/delete-property/ qcom,msm-vdd-wsa-switch-voltage;
 		/delete-property/ qcom,msm-vdd-wsa-switch-current;
 
-		asoc-codec = <&stub_codec>, <&msm_digital_codec>;
-		asoc-codec-names = "msm-stub-codec.1", "msm-dig-codec";
 	};
 
 	qcom,tz_gpio {
