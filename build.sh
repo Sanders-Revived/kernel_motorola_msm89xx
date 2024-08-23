@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# Compile script for Skyline kernel
+# Compile script for Thirteen kernel
 # Copyright (C) 2020-2021 Adithya R.
 
 SECONDS=0 # builtin bash timer
-ZIPNAME="Skyline-aljeter-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME="Thirteen-aljeter-$(date '+%Y%m%d-%H%M').zip"
 TC_DIR="$(pwd)/tc/clang-r450784e"
 AK3_DIR="$(pwd)/android/AnyKernel3"
 DEFCONFIG="aljeter_defconfig"
