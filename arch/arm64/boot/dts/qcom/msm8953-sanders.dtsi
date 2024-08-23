@@ -692,7 +692,7 @@
 &pmi_haptic{
 	qcom,vmax-mv = <1950>;
 	qcom,wave-play-rate-us = <4255>;
-	qcom,actuator-type = "lra";
+	qcom,actuator-type = <1>;
 	qcom,wave-shape = "sine";
 	qcom,lra-auto-res-mode="none";
 	qcom,lra-high-z="none";
