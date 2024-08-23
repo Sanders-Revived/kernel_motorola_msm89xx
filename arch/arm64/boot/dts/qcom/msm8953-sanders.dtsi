@@ -86,6 +86,10 @@
 	qcom,disable-wake-on-touch;
 };
 
+&qcom_seecom {
+	qcom,appsbl-qseecom-support;
+};
+
 &flash_led {
 	/delete-property/ qcom,clamp-curr;
 	qcom,clamp-current = <200>;
