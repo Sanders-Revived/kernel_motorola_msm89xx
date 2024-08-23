@@ -953,6 +953,7 @@
 	pinctrl-0 = <&usb_id_active>;
 	pinctrl-1 = <&usb_id_sleep>;
 	vbus_dwc3-supply = <&smbcharger_charger_otg>;
+	extcon = <&qpnp_smbcharger>;
 };
 
 &pm8953_l6 {
