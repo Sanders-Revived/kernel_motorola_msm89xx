@@ -102,6 +102,10 @@
 		qcom,force-warm-reboot;
 	};
 
+	qcom,lpm-levels {
+		qcom,use-psci;
+	};
+
 	/delete-node/ eldo2;
 	/delete-node/ uart@78b0000;
 	/delete-node/ i2c@7af5000;
