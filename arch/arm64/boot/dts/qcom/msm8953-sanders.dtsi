@@ -75,6 +75,13 @@
 
 };
 
+&firmware {
+	android {
+		/delete-node/ fstab;
+		/delete-node/ vbmeta;
+	};
+};
+
 &soc{
 
 	alsa_to_h2w {
