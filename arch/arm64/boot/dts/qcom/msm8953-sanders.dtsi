@@ -82,6 +82,10 @@
 	};
 };
 
+&msm_gpu {
+	qcom,disable-wake-on-touch;
+};
+
 &soc{
 
 	alsa_to_h2w {
