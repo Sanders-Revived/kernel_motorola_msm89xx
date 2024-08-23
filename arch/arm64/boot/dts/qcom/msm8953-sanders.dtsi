@@ -98,6 +98,10 @@
 		};
 	};
 
+	restart@4ab000 {
+		qcom,force-warm-reboot;
+	};
+
 	/delete-node/ eldo2;
 	/delete-node/ uart@78b0000;
 	/delete-node/ i2c@7af5000;
