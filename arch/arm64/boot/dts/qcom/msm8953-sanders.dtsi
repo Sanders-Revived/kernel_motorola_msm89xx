@@ -528,19 +528,6 @@
 	};
 };
 
-&pmi_haptic{
-	qcom,vmax-mv = <1950>;
-	qcom,wave-play-rate-us = <4255>;
-	qcom,actuator-type = <1>;
-	qcom,wave-shape = "sine";
-	qcom,lra-auto-res-mode="none";
-	qcom,lra-high-z="none";
-	qcom,lra-res-cal-period = <4>;
-	qcom,correct-lra-drive-freq;
-	qcom,misc-trim-error-rc19p2-clk-reg-present;
-	qcom,brake-pattern = [03 03 03 03];
-};
-
 &blsp1_uart0 {
 	status = "ok";
 	pinctrl-names = "default";
@@ -949,6 +936,26 @@
 				qcom,source-sel = <1>;
 				qcom,mode-ctrl = <0x60>;
 			};
+		};
+	};
+
+	qcom,pmi8950@3 {
+		/delete-node/ qcom,haptics@c000;
+		
+		pmi_haptic: qcom,haptics@c000 {
+			compatible = "qcom,haptics";
+			reg = <0xc000 0x100>;
+			interrupts = <0x3 0xc0 0x0 IRQ_TYPE_EDGE_BOTH>,
+				     <0x3 0xc0 0x1 IRQ_TYPE_EDGE_BOTH>;
+			interrupt-names = "hap-sc-irq", "hap-play-irq";
+
+			qcom,actuator-type = "lra";
+			qcom,vmax-mv = <1950>;
+			qcom,play-rate-us = <4255>;
+
+			qcom,lra-auto-res-mode = "none";
+			qcom,lra-high-z = "none";
+			qcom,lra-res-cal-period = <4>;
 		};
 	};
 };
