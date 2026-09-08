@@ -604,6 +604,13 @@ int __must_check media_device_register_entity(struct media_device *mdev,
 	/* Initialize media_gobj embedded at the entity */
 	media_gobj_create(mdev, MEDIA_GRAPH_ENTITY, &entity->graph_obj);
 
+#ifdef CONFIG_SANDERS_DTB
+	if (entity->id == 0)
+		entity->id = mdev->entity_id++;
+	else
+		mdev->entity_id = max(entity->id + 1, mdev->entity_id);
+#endif
+
 	/* Initialize objects at the pads */
 	for (i = 0; i < entity->num_pads; i++)
 		media_gobj_create(mdev, MEDIA_GRAPH_PAD,
@@ -726,6 +733,9 @@ int __must_check __media_device_register(struct media_device *mdev,
 		return -ENOMEM;
 
 	/* Register the device node. */
+#ifdef CONFIG_SANDERS_DTB
+	mdev->entity_id = 1;
+#endif
 	mdev->devnode = devnode;
 	devnode->fops = &media_device_fops;
 	devnode->parent = mdev->dev;

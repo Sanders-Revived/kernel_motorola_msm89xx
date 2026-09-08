@@ -139,6 +139,9 @@ struct media_device {
 	u64 topology_version;
 
 	u32 id;
+#ifdef CONFIG_SANDERS_DTB
+	u32 entity_id;
+#endif
 	struct ida entity_internal_idx;
 	int entity_internal_idx_max;
 
