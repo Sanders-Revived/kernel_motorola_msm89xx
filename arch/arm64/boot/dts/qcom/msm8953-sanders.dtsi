@@ -38,6 +38,29 @@
 		/delete-property/ spi3;
 	};
 
+reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+		tzlog_bck_mem: tzlog_bck_region {
+			no-map;
+			reg = <0x0 0xeefe4000 0x0 0x2000>;
+			label = "tzlog_bck_mem";
+		};
+		wdog_cpuctx_mem: wdog_cpuctx_region {
+			no-map;
+			reg = <0x0 0xeefe6000 0x0 0x1a000>;
+			label = "wdog_cpuctx_mem";
+		};
+		ramoops_mem: ramoops_mem_region {
+			compatible = "ramoops";
+			reg = <0x0 0xef000000 0x0 0x80000>;
+			console-size = <0x40000>;
+			pmsg-size = <0x800>;
+			record-size = <0x3F800>;
+		};
+	};
+
 	utags {
 		compatible = "mmi,utags";
 		mmi,main-utags = "/dev/block/bootdevice/by-name/utags";
@@ -52,39 +75,6 @@
 
 };
 
-&reserved_memory {
-	ramoops_mem: ramoops_mem_region {
-		compatible = "ramoops";
-		ramoops-annotate-size = <MMI_ANNOTATE_SIZE>;
-		no-map;
-		console-size = <RAMOOPS_CONSOLE_SIZE>;
-		pmsg-size = <RAMOOPS_PMSG_SIZE>;
-		record-size = <RAMOOPS_RECORD_SIZE>;
-		reg = <0x0 RAMOOPS_BASE_ADDR_8953 0x0 RAMOOPS_SIZE>;
-		label = "ramoops_mem";
-	};
-
-	tzlog_bck_mem: tzlog_bck_region {
-		no-map;
-		reg = <0x0 TZLOG_BCK_BASE_8953
-			0x0 TZLOG_BCK_SIZE_8953>;
-		label = "tzlog_bck_mem";
-	};
-
-	wdog_cpuctx_mem: wdog_cpuctx_region {
-		no-map;
-		reg = <0x0 WDOG_CPUCTX_BASE_8953
-			0x0 WDOG_CPUCTX_SIZE_8953>;
-		label = "wdog_cpuctx_mem";
-	};
-
-	mmi_annotate_mem: mmi_annotate_mem_region {
-			no-map;
-			reg = <0x0 MMI_ANNOTATE_BASE_8953
-					0x0 MMI_ANNOTATE_SIZE>;
-	};
-};
-
 &soc{
 
 	alsa_to_h2w {
@@ -93,7 +83,7 @@
 
 	gpio_keys {
 		compatible = "gpio-keys";
-		input-name = "gpio-keys";
+		label = "gpio-keys";
 		pinctrl-names = "default";
 		pinctrl-0 = <&gpio_key>;
 
@@ -410,26 +400,6 @@
 		mmi,temperature-names = "front_temp",
 					"back_temp";
 		status = "ok";
-	};
-
-	ramoops {
-		compatible = "ramoops";
-		status = "ok";
-
-		android,ramoops-buffer-start = <RAMOOPS_BASE_ADDR_8953>;
-		android,ramoops-buffer-size = <RAMOOPS_SIZE>;
-		android,ramoops-console-size = <RAMOOPS_CONSOLE_SIZE>;
-		android,ramoops-record-size = <RAMOOPS_RECORD_SIZE>;
-		android,ramoops-annotate-size = <MMI_ANNOTATE_SIZE>;
-		android,ramoops-dump-oops = <0x1>;
-
-		linux,contiguous-region = <&ramoops_mem>;
-	};
-
-	mmi_annotate {
-		compatible = "mmi,annotate";
-		memory-region = <&mmi_annotate_mem>;
-		mem-size = <0x20000>;
 	};
 
 	wdog: qcom,wdt@b017000 {
