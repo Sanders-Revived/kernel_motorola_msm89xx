@@ -900,7 +900,8 @@ config SENSORS_FPC_1020_SANDERS
 	bool "FPC1020 SPI fingerprint sensor (Sanders)"
 	depends on SPI
 	help
-	  Say Y here to include the Sanders-specific SPI FPC1020 driver.
+	  Say Y here to enable the Sanders-specific SPI path in the common
+	  FPC1020 driver.
 
 config INPUT_EGISTEC_FPS
 	tristate "Egistec FPS fingerprint sensor"
