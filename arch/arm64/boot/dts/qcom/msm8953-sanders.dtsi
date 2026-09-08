@@ -75,6 +75,10 @@ reserved-memory {
 
 };
 
+&qcom_seecom {
+	qcom,appsbl-qseecom-support;
+};
+
 &soc{
 
 	alsa_to_h2w {
