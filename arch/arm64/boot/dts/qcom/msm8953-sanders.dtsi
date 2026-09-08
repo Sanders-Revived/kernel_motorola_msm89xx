@@ -75,6 +75,13 @@ reserved-memory {
 
 };
 
+&firmware {
+	android {
+		/delete-node/ fstab;
+		/delete-node/ vbmeta;
+	};
+};
+
 &qcom_seecom {
 	qcom,appsbl-qseecom-support;
 };
