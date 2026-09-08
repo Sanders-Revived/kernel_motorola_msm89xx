@@ -22,6 +22,12 @@
 #include "msm8953-sanders-fps.dtsi"
 #include "msm8953-camera-sensor-mot-sanders.dtsi"
 
+/*These nodes are not used and cause pin conflicts*/
+/delete-node/ &wsa881x_i2c_45;
+/delete-node/ &wsa881x_i2c_f;
+/delete-node/ &wsa881x_analog_clk_gpio;
+/delete-node/ &wsa881x_analog_reset_gpio;
+
 / {
 	model = "sanders";
 	compatible = "qcom,msm8953-sanders", "qcom,msm8953-moto",
@@ -1060,4 +1066,3 @@ reserved-memory {
 &pm8953_l10 {
         regulator-always-on;
 };
-
