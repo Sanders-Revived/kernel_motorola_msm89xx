@@ -92,6 +92,10 @@ reserved-memory {
 	qcom,appsbl-qseecom-support;
 };
 
+&int_codec {
+    /delete-property/ qcom,cdc-us-eu-gpios;
+};
+
 &soc{
 
 	alsa_to_h2w {
@@ -130,6 +134,7 @@ reserved-memory {
 	/delete-node/ adv_vreg;
 	/delete-node/ adv7533@39;
 	/delete-node/ sound-9335;
+	/delete-node/ msm_cdc_pinctrl_us_euro_sw;
 
 	dummy_vreg: dummy_vreg {
 		compatible = "regulator-fixed";
