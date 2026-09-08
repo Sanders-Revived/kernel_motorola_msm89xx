@@ -40,14 +40,10 @@ menuconfig MSMB_CAMERA
       and postprocessing drivers.
 
 config MSMB_CAMERA_LEGACY
-    bool "QTI MSM camera and video capture 2.0 (legacy)"
+    bool "QTI MSM camera and video capture 2.0 (legacy version)"
     depends on MSMB_CAMERA
     help
-    ---help---
-      Say Y here to enable selecting the video adapters for
-      QTI msm camera and video capture 2.0, enabling this
-      adds support for the camera driver stack including sensor, isp
-      and postprocessing drivers. (legacy)
+      Say Y here to use legacy QTI msm camera and video capture 2.0.
 
 config MSMB_CAMERA_DEBUG
     bool "QTI MSM camera 2.0 debugging with printk"

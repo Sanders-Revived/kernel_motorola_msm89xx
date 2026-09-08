@@ -11,10 +11,10 @@ obj-$(CONFIG_SPECTRA_CAMERA) += camera_v3/
 else
 obj-$(CONFIG_SPECTRA_CAMERA) += camera/
 endif
-ifeq ($(CONFIG_MSMB_CAMERA_LEGACY), y)
-obj-$(CONFIG_MSMB_CAMERA) += camera_v2-legacy/
-else
+ifneq ($(CONFIG_MSMB_CAMERA_LEGACY),y)
 obj-$(CONFIG_MSMB_CAMERA) += camera_v2/
+else
+obj-$(CONFIG_MSMB_CAMERA) += camera_v2-legacy/
 endif
 obj-y += broadcast/
 obj-$(CONFIG_DVB_MPQ) += dvb/
