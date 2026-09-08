@@ -222,6 +222,12 @@ reserved-memory {
 		dma-names = "tx", "rx";
 	};
 
+		cdc_cs35l35_mclk: cdc_cs35l35_mi2s_gpios {
+			compatible = "qcom,msm-cdc-pinctrl";
+			pinctrl-names = "aud_active", "aud_sleep";
+			pinctrl-0 = <&cs35l35_mclk_on>;
+			pinctrl-1 = <&cs35l35_mclk_off>;
+		};
 
 	i2c_7: i2c@7af7000 { /* BLSP2 QUP1 */
 		status = "ok";
@@ -383,6 +389,8 @@ reserved-memory {
 		qcom,msm-micbias1-ext-cap;
 		qcom,msm-hs-micbias-type = "internal";
 		qcom,msm-ext-pa = "quinary";
+		qcom,cs35l35-gpios = <&cdc_cs35l35_mclk>;
+
 		qcom,audio-routing =
 			"RX_BIAS", "MCLK",
 			"INT_LDO_H", "MCLK",
