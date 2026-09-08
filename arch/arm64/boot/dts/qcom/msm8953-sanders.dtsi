@@ -370,14 +370,6 @@ reserved-memory {
 		linux,contiguous-region = <&tzlog_bck_mem>;
 	};
 
-	ospl {
-		compatible = "mmi,ospl2xx";
-		status = "ok";
-		mmi,ospl-tune-index = <0 1 2 3>;
-		mmi,ospl-afe-port-id = <0x1016 0x1017>;
-		mmi,ospl-left-feedback;
-	};
-
 	sound {
 		status = "okay";
 		qcom,model = "msm8953-snd-card";
