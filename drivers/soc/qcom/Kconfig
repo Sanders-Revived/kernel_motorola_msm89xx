@@ -65,6 +65,12 @@ config SANDERS_DTB
           Only include Sanders specific DTBs to limit the number that
           get built during kernel compilation.
 
+config SND_LEGACY
+        bool "Legacy ADSP media format"
+        help
+          Select the legacy ADSP PCM media-format path required by
+          Sanders audio firmware.
+
 config QCOM_CPUSS_DUMP
 	bool "CPU Subsystem Dumping support"
 	help
