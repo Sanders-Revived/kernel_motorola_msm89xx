@@ -689,6 +689,7 @@ reserved-memory {
 
 &qpnp_smbcharger {
 	status = "okay";
+	dpdm-supply = <&qusb_phy>;
 	/delete-property/ qcom,iterm-ma;
 	qcom,iterm-disabled;
 	qcom,usbid-disabled;
