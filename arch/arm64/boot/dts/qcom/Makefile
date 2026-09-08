@@ -1,6 +1,8 @@
 ifeq ($(CONFIG_MMI_DEVICE_DTBS),y)
 ifneq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
+ifneq ($(CONFIG_SANDERS_DTB),y)
 	$(error Pippen DT w/o overlay is undefined!!!)
+endif
 endif
 
 # Add 1k of padding to the DTBs to allow for environment variables
@@ -46,6 +48,12 @@ dtbo-$(CONFIG_CHANNEL_DTB) += \
 	sdm632-channel-tmo-dvt-overlay.dtbo
 
 dtbo-$(CONFIG_SURFNA_DTB) += msm8940-surfna-evt-overlay.dtbo
+
+dtb-$(CONFIG_SANDERS_DTB) += \
+	msm8953-sanders-p1.dtb \
+	msm8953-sanders-p2.dtb \
+	msm8953-sanders-p3.dtb \
+	msm8953-sanders-p4.dtb
 
 sdm450-ali-evt-overlay.dtbo-base := \
 		sdm450-ali-base.dtb
