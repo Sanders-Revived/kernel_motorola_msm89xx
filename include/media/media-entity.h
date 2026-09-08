@@ -263,7 +263,13 @@ struct media_entity {
 	const char *name;
 	enum media_entity_type obj_type;
 	u32 function;
+#ifdef CONFIG_SANDERS_DTB
+	u32 revision;
+#endif
 	unsigned long flags;
+#ifdef CONFIG_SANDERS_DTB
+	u32 group_id;
+#endif
 
 	u16 num_pads;
 	u16 num_links;

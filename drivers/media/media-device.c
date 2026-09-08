@@ -113,9 +113,15 @@ static long media_device_enum_entities(struct media_device *mdev, void *arg)
 	if (ent->name)
 		strlcpy(entd->name, ent->name, sizeof(entd->name));
 	entd->type = ent->function;
+#ifdef CONFIG_SANDERS_DTB
+	/* The legacy Motorola HAL uses these fields to find camera subdevs. */
+	entd->revision = ent->revision;
+	entd->group_id = ent->group_id;
+#else
 	entd->revision = 0;		/* Unused */
-	entd->flags = ent->flags;
 	entd->group_id = 0;		/* Unused */
+#endif
+	entd->flags = ent->flags;
 	entd->pads = ent->num_pads;
 	entd->links = ent->num_links - ent->num_backlinks;
 
