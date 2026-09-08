@@ -44,7 +44,7 @@ struct pn544_dev	{
 	struct i2c_client	*client;
 	struct miscdevice	pn544_device;
 	struct regulator        *vdd;
-#ifdef CONFIG_PN544_CTRLDEV
+#ifdef CONFIG_MOT_PN544_CTRLDEV
 	struct device		*pn544_control_device;
 #endif
 	unsigned int		ven_gpio;
@@ -282,7 +282,7 @@ static long pn544_dev_ioctl(struct pn544_dev *pn544_dev,
 	return 0;
 }
 
-#ifndef CONFIG_PN544_CTRLDEV
+#ifndef CONFIG_MOT_PN544_CTRLDEV
 static long  pn544_dev_unlocked_ioctl(struct file *filp, unsigned int cmd,
 				unsigned long arg)
 {
@@ -315,7 +315,7 @@ static const struct file_operations pn544_dev_fops = {
 	.read	= pn544_dev_read,
 	.write	= pn544_dev_write,
 	.open	= pn544_dev_open,
-#ifndef CONFIG_PN544_CTRLDEV
+#ifndef CONFIG_MOT_PN544_CTRLDEV
 #ifdef CONFIG_COMPAT
 	.compat_ioctl = pn544_dev_unlocked_ioctl,
 #endif
@@ -323,7 +323,7 @@ static const struct file_operations pn544_dev_fops = {
 #endif
 };
 
-#ifdef CONFIG_PN544_CTRLDEV
+#ifdef CONFIG_MOT_PN544_CTRLDEV
 static ssize_t pn544_control_func(struct device *dev,
 				struct device_attribute *attr,
 				const char *buf,
@@ -553,7 +553,7 @@ static int pn544_probe(struct i2c_client *client,
 	pr_debug("%s : PN544 Misc Minor: %d\n",
 		__func__, pn544_dev->pn544_device.minor);
 
-#ifdef CONFIG_PN544_CTRLDEV
+#ifdef CONFIG_MOT_PN544_CTRLDEV
 	dev_info(&client->dev, "creating control device\n");
 	/* Get the device structure */
 	pn544_dev->pn544_control_device = pn544_dev->pn544_device.this_device;
@@ -591,7 +591,7 @@ static int pn544_probe(struct i2c_client *client,
 	return 0;
 
 err_request_irq_failed:
-#ifdef CONFIG_PN544_CTRLDEV
+#ifdef CONFIG_MOT_PN544_CTRLDEV
 	device_remove_file(pn544_dev->pn544_control_device,
 				&dev_attr_pn544_control_dev);
 err_device_create_file_failed:
@@ -620,7 +620,7 @@ static int pn544_remove(struct i2c_client *client)
 	unregister_reboot_notifier(&pn544_dev->reboot_notify);
 	free_irq(client->irq, pn544_dev);
 	pn544_gpio_free(pn544_dev);
-#ifdef CONFIG_PN544_CTRLDEV
+#ifdef CONFIG_MOT_PN544_CTRLDEV
 	device_remove_file(pn544_dev->pn544_control_device,
 				&dev_attr_pn544_control_dev);
 #endif
