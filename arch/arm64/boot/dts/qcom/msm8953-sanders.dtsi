@@ -122,6 +122,7 @@ reserved-memory {
 	/delete-node/ i2c@7af5000;
 	/delete-node/ spi@78b7000;
 	/delete-node/ adv_vreg;
+	/delete-node/ adv7533@39;
 	/delete-node/ sound-9335;
 
 	dummy_vreg: dummy_vreg {
@@ -129,61 +130,6 @@ reserved-memory {
 		status = "ok";
 		regulator-name = "dummy_vreg";
 		regulator-always-on;
-	};
-
-	i2c_2: i2c@78b6000 { /* BLSP1 QUP2 */
-		compatible = "qcom,i2c-msm-v2";
-		#address-cells = <1>;
-		#size-cells = <0>;
-		reg-names = "qup_phys_addr";
-		reg = <0x78b6000 0x1000>;
-		interrupt-names = "qup_irq";
-		interrupts = <0 96 0>;
-		qcom,clk-freq-out = <400000>;
-		qcom,clk-freq-in  = <19200000>;
-		clock-names = "iface_clk", "core_clk";
-		clocks = <&clock_gcc clk_gcc_blsp1_ahb_clk>,
-			<&clock_gcc clk_gcc_blsp1_qup2_i2c_apps_clk>;
-
-		pinctrl-names = "i2c_active", "i2c_sleep";
-		pinctrl-0 = <&i2c_2_active>;
-		pinctrl-1 = <&i2c_2_sleep>;
-		qcom,noise-rjct-scl = <0>;
-		qcom,noise-rjct-sda = <0>;
-		qcom,master-id = <86>;
-		dmas = <&dma_blsp1 6 64 0x20000020 0x20>,
-			<&dma_blsp1 7 32 0x20000020 0x20>;
-		dma-names = "tx", "rx";
-
-		elan@49 {
-			compatible = "epl,epl8802";
-			reg = <0x49>;
-			id = <0>;
-			num-of-rp = <2>;
-			epl,irq-gpio = <&tlmm 36 0x00>;
-			pinctrl-names = "epl8802_default", "epl8802_suspend";
-			pinctrl-0 = <&epl8802_active>;
-			pinctrl-1 = <&epl8802_suspend>;
-		};
-
-		sx9310@28 {
-			compatible = "semtech,sx9310";
-			reg = <0x28>;
-			cap_svdd-supply = <&pm8953_l6>;
-			cap_vdd-supply = <&pm8953_l22>;
-			interrupt-parent = <&tlmm>;
-			interrupts = <46 0x2008>;
-			gpios = <&tlmm 46 0x2008>; /* IRQ */
-			pinctrl-names = "default";
-			pinctrl-0 = <&sx9310_irq_default>;
-			cap,use_channel = <0x01>;
-			cap,scan_period = <0x05>;
-			reg_array_len = <5>;
-			reg_array_val = <0x12 0x0B 0x13 0x05 0x15 0xC2
-					0x18 0x4E 0x10 0x51>;
-		};
-
-		/delete-node/ adv7533@39;
 	};
 
 	i2c_3: i2c@78b7000 { /* BLSP1 QUP3 */

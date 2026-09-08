@@ -11,63 +11,6 @@
  */
 
 &tlmm{
-	i2c_2 {
-		i2c_2_active: i2c_2_active {
-			/* active state */
-			mux {
-				pins = "gpio6", "gpio7";
-				function = "blsp_i2c2";
-			};
-
-			config {
-				pins = "gpio6", "gpio7";
-				drive-strength = <2>;
-				bias-disable; /* No PULL */
-			};
-		};
-
-		i2c_2_sleep: i2c_2_sleep {
-			/* suspended state */
-			mux {
-				pins = "gpio6", "gpio7";
-				function = "blsp_i2c2";
-			};
-
-			config {
-				pins = "gpio6", "gpio7";
-				drive-strength = <2>;
-				bias-disable;/* No PULL */
-			};
-		};
-
-		epl8802_active: epl8802_active{
-			/* active state */
-			mux {
-				//pins = "gpio36";
-				function = "gpio";
-			};
-
-			config {
-				//pins = "gpio36";
-				drive-strength = <2>;
-				bias-disable; /* No PULL */
-			};
-		};
-
-		epl8802_suspend: epl8802_suspend{
-			mux {
-				//pins = "gpio36";
-				function = "gpio";
-			};
-
-			config {
-				//pins = "gpio36";
-				drive-strength = <2>;
-				bias-disable; /* No PULL */
-			};
-		};
-	};
-
 	i2c_3 {
 		i2c_3_active: i2c_3_active {
 			/* active state */
@@ -348,19 +291,6 @@
 				drive-strength = <2>;
 				bias-disable;
 			};
-		};
-	};
-
-	sx9310_irq_default: sx9310_irq_default {  //cap sense inturrupt
-		mux {
-			pins = "gpio46";
-			function = "gpio";
-		};
-
-		config {
-			pins = "gpio46";
-			drive-strength = <2>;
-			bias-pull-up;
 		};
 	};
 
