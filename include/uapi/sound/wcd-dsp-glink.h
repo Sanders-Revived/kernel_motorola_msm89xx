@@ -1,0 +1,1 @@
+../../../techpack/audio/include/uapi/sound/wcd-dsp-glink.h

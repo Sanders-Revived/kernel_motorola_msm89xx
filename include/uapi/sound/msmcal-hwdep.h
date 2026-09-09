@@ -1,0 +1,1 @@
+../../../techpack/audio/include/uapi/sound/msmcal-hwdep.h

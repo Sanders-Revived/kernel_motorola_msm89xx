@@ -1,0 +1,1 @@
+../../../techpack/audio/include/uapi/sound/lsm_params.h

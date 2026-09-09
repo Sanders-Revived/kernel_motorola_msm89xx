@@ -1,0 +1,1 @@
+../../../techpack/audio/include/uapi/sound/audio_slimslave.h

@@ -1,0 +1,1 @@
+../../../techpack/audio/include/uapi/sound/devdep_params.h
