@@ -2,6 +2,25 @@ name: Aurora-Kernel
 
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Kernel branch to build'
+        required: true
+        default: '4.9.337'
+        type: choice
+        options:
+          - 4.9.337
+          - SDM632-WIP
+      with_ksu:
+        description: 'Include ReSukiSU (root)?'
+        required: true
+        default: false
+        type: boolean
+      ksu_ref:
+        description: 'ReSukiSU version (branch, tag or commit). E.g. main'
+        required: false
+        default: 'main'
+        type: string
 
 jobs:
   build:
@@ -13,8 +32,10 @@ jobs:
       KERNEL_NAME: Aurora Kernel
 
     steps:
-      - name: Check Out
+      - name: Check Out (${{ inputs.branch }})
         uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.branch }}
 
       - name: Set Timezone
         uses: szenius/set-timezone@v1.2
@@ -30,8 +51,12 @@ jobs:
         run: echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
 
       - name: Run build script
+        env:
+          WITH_KSU: ${{ inputs.with_ksu && '1' || '0' }}
+          KSU_REF: ${{ inputs.ksu_ref }}
         run: |
-          ./build.sh sanders
+          echo "Branch: ${{ inputs.branch }} | WITH_KSU=$WITH_KSU | KSU_REF=$KSU_REF"
+          ./build.sh
 
       - name: Set Build End Time
         run: echo "END_TIME=$(date +%s)" >> $GITHUB_ENV
@@ -52,4 +77,6 @@ jobs:
           message: |
             🌌 New Aurora Kernel build available!
             📱 Device: Moto G5s Plus (sanders)
+            🌿 Branch: ${{ inputs.branch }}
+            🛡 KSU: ${{ inputs.with_ksu && 'with ReSukiSU' || 'without KSU' }} (${{ inputs.ksu_ref }})
             ⏱ Build time: ${{ env.BUILD_DURATION }}
